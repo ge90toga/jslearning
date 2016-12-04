@@ -1,13 +1,26 @@
-// hoisting
-// function get entirely "injected" (set up memory space) in global
+// var myVar = 'Hello';
+var gloVar = 'gloVar';
+function a() {
 
-b(); //output hello world (function gets entirely hoisted)
-console.log(a); // for a variable, only a placeholder is set (assignment is executed during execution phase, not hoisting)
-console.log(c); // error; not defined != undefined
+    function b() {
+        console.log(myVar); // output Hello2
+        console.log(gloVar); // go to global
+        console.log(undef); // undefined
+    }
 
-var a = 'Hello Javascript';
-
-function  b() {
-    console.log('function b');
+    var myVar = 'Hello2';
+    b();
+    var undef = 'Hello2';
 }
 
+a();
+
+/*
+Scope chain:
+* The function sits on the stack,
+* keep a reference of the outer environment
+* When a var is called, it checks its current scope and look for its outer and
+ * outer environment until it finds anything or nothing.
+*
+*
+* */
