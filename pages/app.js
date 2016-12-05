@@ -1,26 +1,23 @@
-// var myVar = 'Hello';
-var gloVar = 'gloVar';
-function a() {
-
-    function b() {
-        console.log(myVar); // output Hello2
-        console.log(gloVar); // go to global
-        console.log(undef); // undefined
-    }
-
-    var myVar = 'Hello2';
-    b();
-    var undef = 'Hello2';
+/*
+ While the waiting is executing, click the 'clickme',
+ this event will be pushed into the event queue.
+ When this exec stack is empty, the execution stack stops;
+ */
+function waitForThreeSec() {
+    var ms = 3000 + new Date().getTime();
+    while(new Date() < ms){} // wait for 3 secs;
+    console.log('finished 3s waiting');
 }
 
-a();
 
-/*
-Scope chain:
-* The function sits on the stack,
-* keep a reference of the outer environment
-* When a var is called, it checks its current scope and look for its outer and
- * outer environment until it finds anything or nothing.
-*
-*
-* */
+function clickHandler() {
+    console.log('click event');
+}
+
+
+document.getElementById('wait').addEventListener('click', waitForThreeSec);
+document.getElementById('clickme').addEventListener('click', clickHandler);
+
+//document.getElementById('wait').addEventListener('click',waitForThreeSec);
+console.log('finished global exec');
+
