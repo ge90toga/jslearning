@@ -1,24 +1,16 @@
-var person = new Object();
+var tony = {
+    firstname: "Tony",
+    lastname: "Stark",
+    address: {
+        street: "111 Main St.",
+        city: "New York",
+        state:"NY"
+    }
+};
 
-// use [] to access property
-person["firstname"] = "Tony";
-person["lastname"] = "Stark";
-var firstNameProperty = "firstname";
+function greet(p){
+    console.log('Hi ' + p.firstname);
+}
 
-console.log(person);
-console.log(person["firstname"]);
-console.log(person[firstNameProperty]);
-
-// . access
-console.log(person.firstname);
-console.log(person.lastname);
-
-//
-
-person.address = new Object();
-person.address.city = "Sydney";
-person.address.street = "1 cowper street";
-console.log(person["address"]["city"]);
-console.log(person.address.city);
-
-// [] offers dynamic access but one should use . as much as possible
+console.log(tony);
+greet(tony);
