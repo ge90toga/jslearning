@@ -1,23 +1,46 @@
+// Number(false) // 0
+// Number(true) // 1
+// Number(undefined) // NaN not a number
+// Number(null) //0
+
+
+// false == 0;
+
+// strict equal ===
+// does not try to convert
+
+
+// good use for coresion:
+
+// var a = "";
+// if (a) {
+//     console.log("a is something");
+// }else{
+//     console.log("a is nothing")
+// }
+
+// learn default value
+
+
+function greet(name) {
+    console.log('Hello ' + name);
+}
+
 /*
- While the waiting is executing, click the 'clickme',
- this event will be pushed into the event queue.
- When this exec stack is empty, the execution stack stops;
+ * || does more than just return true or false, it returns the value that first can convert to true:
+ * It returns the first value that can be coerce to true!!!
+ *  0 || 1 // return 1
+ *  'Hi' || 'Hello' //return Hi
+ *  0 || 'Hello' // return 'Hello'
+ *  null || 'Hello' // return 'Hello'
  */
-function waitForThreeSec() {
-    var ms = 3000 + new Date().getTime();
-    while(new Date() < ms){} // wait for 3 secs;
-    console.log('finished 3s waiting');
+function greetDefault(name){
+    name = name || '<default name>';
+    console.log('Hello ' + name);
 }
+greet();
+greet('Tom');
 
-
-function clickHandler() {
-    console.log('click event');
-}
-
-
-document.getElementById('wait').addEventListener('click', waitForThreeSec);
-document.getElementById('clickme').addEventListener('click', clickHandler);
-
-//document.getElementById('wait').addEventListener('click',waitForThreeSec);
-console.log('finished global exec');
-
+greetDefault();
+greetDefault('Boris');
+greetDefault(0); // will get default name
