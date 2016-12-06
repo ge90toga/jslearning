@@ -1,16 +1,14 @@
-var tony = {
-    firstname: "Tony",
-    lastname: "Stark",
-    address: {
-        street: "111 Main St.",
-        city: "New York",
-        state:"NY"
-    }
-};
+// var greet = "Hello";
+// var greet = "Hola"; // collision
 
-function greet(p){
-    console.log('Hi ' + p.firstname);
-}
 
-console.log(tony);
-greet(tony);
+var english = {greetings:{}};
+
+var spanish = {};
+
+english.greet = "Hello";
+spanish.greet = "Hola";
+
+// namespace inside namespace
+//english.greeting = {};
+english.greetings.greet = "Hello";
