@@ -1,20 +1,17 @@
-# JSON
-- JSON is not exact the same as js object
-- JSON is inspired by js notation
-- JSON is subset of js obj notation
-- anything valid in JSON is js but not the other way around
-### JSON vs js
-```javascript
-// fine in only js
-var objectLiteral = 
-{ 
-    firstname: "Mary",
-    isProgrammer: true
-}
-// fine in JSON AND JS
-{
-  "firstname": "firstname",
-  "isProgrammer": true
-}
+### JS Functions
+- functions are **objects** in js
+- In js we have the concept called first class functions
+#### What we can do to function in js
+* things we can do to other types, we can also do to function
+* assign them to variables, pass them around, create them on the fly
 
+Assume we have a function
+```javascript
+function greet() {
+    console.log('Hi');
+}
 ```
+it has:
+* name property greet;
+* code property "Invokable";
+
