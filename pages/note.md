@@ -15,3 +15,14 @@ it has:
 * name property greet;
 * code property "Invokable";
 
+#### Function expression
+Expression: a unit of code results in a value (not necessarily store);
+#### Anonymous function
+```javascript
+var anonymous = function() {
+    console.log('Hi');
+}
+anonymous();
+```
+* The variable is pointing to the anonymous function's address
+* name property for this function is anonymous
