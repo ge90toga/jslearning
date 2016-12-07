@@ -1,55 +1,31 @@
-// console.log(this);
 
-function a() {
-    console.log(this);
-    this.name = "Linus Quan";
+function greet(firstname,lastname, language) {
+    language = language || "en"; // default value
+    console.log(firstname);
+    console.log(lastname);
+    console.log(language);
+    console.log('-----------')
 }
 
-a(); // simply invoking function, this refers to global context
+function greet2(firstname,lastname, language) {
 
-var b = function () {
-    console.log(this);
-}
-console.log(name); // Linus Quan gets output since this in a() refers to global context
-b(); // all global this
-
-
-// In object method
-// var obj = {
-//     name: "javascript name",
-//     log: function () {
-//         this.name = "updated js name";
-//         console.log(this); // this refers to obj in which property name gets changed to new value
-//         var setname = function (newname) {
-//             this.name = newname;
-//         }
-//         setname("set a new name");
-//         // a weird bug
-//         console.log(this);
-//         // try window in console and you can see the name is set in global context
-//     }
-//
-// }
-
-
-
-// A better practice:
-
-var obj = {
-    name: "javascript name",
-    log: function () {
-        var self = this; // objects set by reference, self points to the same address of this
-        self.name = "updated js name";
-        console.log(self); // this refers to obj in which property name gets changed to new value
-        var setname = function (newname) {
-            self.name = newname;
-        }
-        setname("set a new name");
-        // a weird bug
-        console.log(self);
-        // try window in console and you can see the name is set in global context
+    if(arguments.length === 0) {
+        console.log("missing parameters");
+        return;
     }
+
+    language = language || "en"; // default value
+    console.log(firstname);
+    console.log(lastname);
+    console.log(language);
+    //keyword arguments
+    console.log(arguments);
+    console.log(arguments[0]);
+    // prints an "array like" argument list
+    // we can almost treat it as an array
+    console.log('-----------')
 }
 
-
-obj.log();
+greet(); // undefined
+greet('John'); // comes from left to right
+greet2('Mike','Green','Think');
