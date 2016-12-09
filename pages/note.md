@@ -1,2 +1,25 @@
-JS has no function overloading, to overcome this, we normally uses some pattern, 
-the one we got here is a one of them. 
+### Dangerous Auto semicolon injection
+```javascript
+
+function getPerson() {
+ 
+    return {
+        firstname: 'Tony'
+    }
+    
+}
+
+// if you write: 
+
+function getPerson() {
+ 
+    return 
+    {
+        firstname: 'Tony'
+    }
+    
+}
+// and you call this function, the syntax parser will inject a ; right after return,
+// meaning that the object is never returned!
+// the best way to avoid this is to write { at the same line
+```
