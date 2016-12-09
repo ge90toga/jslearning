@@ -1,9 +1,4 @@
-### IIFE
-we can use () IIFE to avoid collision, assume we have this in html
-```html
-<script src="app1.js" ></script>
-<script src="app2.js" ></script>
-```
-we have this in a _var greeting = "Hola"_ in app1.js.
- 
- 
+### Closure
+- javascript supports closure
+- basically it is the js engine reserves outer function's some local variables' 
+when outer function returns a inner function which has dependency to outer function's variables.
