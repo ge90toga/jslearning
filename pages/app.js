@@ -1,21 +1,48 @@
-function makeGreeting(language) { // a function factory generates functions
+// 1
+function sayHiLater() {
 
-    return function(firstname, lastname) {
+    var greeting = 'Hi!';
+    // set a function expression
+    // set timeout sets an async event
+    setTimeout(function() {
+        // greeting here has a closure to the sayHiLater()'s greeting
+        console.log(greeting);
 
-        if (language === 'en') {
-            console.log('Hello ' + firstname + ' ' + lastname);
-        }
+    }, 3000);
 
-        if (language === 'es') {
-            console.log('Hola ' + firstname + ' ' + lastname);
-        }
+    console.log("say hi finishes");
+}
 
-    }
+sayHiLater();
+
+// 2
+// jQuery uses function expressions and first-class functions!
+//$("button").click(function() {
+//
+//});
+
+// 3 callback function
+// the functionB you give to functionA (as parameter), to be run when function A finishes.
+
+function tellMeWhenDone(callback) {
+
+    var a = 1000; // some work
+    var b = 2000; // some work
+
+    callback(); // the 'callback', it runs the function I give it!
 
 }
 
-var greetEnglish = makeGreeting('en'); // execution context here
-var greetSpanish = makeGreeting('es'); // execution context here
+// give tellMeWhenDone a function
+tellMeWhenDone(function() {
 
-greetEnglish('John', 'Doe');
-greetSpanish('John', 'Doe');
+    console.log('I am done!');
+
+});
+
+// give tellMeWhenDone yet another function
+tellMeWhenDone(function() {
+
+    console.log('All done...');
+
+});
