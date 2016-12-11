@@ -1,48 +1,59 @@
-// 1
-function sayHiLater() {
-
-    var greeting = 'Hi!';
-    // set a function expression
-    // set timeout sets an async event
-    setTimeout(function() {
-        // greeting here has a closure to the sayHiLater()'s greeting
-        console.log(greeting);
-
-    }, 3000);
-
-    console.log("say hi finishes");
+var person = {
+    firstname: 'Linus',
+    lastname: 'Quan',
+    getFullName: function(){
+        var fullname = this.firstname + ' '+ this.lastname;
+        return fullname;
+    }
 }
 
-sayHiLater();
-
-// 2
-// jQuery uses function expressions and first-class functions!
-//$("button").click(function() {
-//
-//});
-
-// 3 callback function
-// the functionB you give to functionA (as parameter), to be run when function A finishes.
-
-function tellMeWhenDone(callback) {
-
-    var a = 1000; // some work
-    var b = 2000; // some work
-
-    callback(); // the 'callback', it runs the function I give it!
-
+var logName = function (lang1,lang2) {
+    console.log('Name: '+ this.getFullName());
 }
 
-// give tellMeWhenDone a function
-tellMeWhenDone(function() {
+// logName() // produces error
 
-    console.log('I am done!');
+var logPersonName = logName.bind(person); // bind the object to var's this property
+logPersonName(); // no error this time
 
-});
+var logNamebind = function (lang1,lang2) {
+    console.log('Name: '+ this.getFullName());
+}.bind(person);
 
-// give tellMeWhenDone yet another function
-tellMeWhenDone(function() {
+logNamebind();
 
-    console.log('All done...');
+logName.call(person,'en','cn'); // pass the first param to replace 'this' in logName
+logName.apply(person,['en','cn']); // does the same, just use [] as the second parameter
 
-});
+
+
+
+// Function Borrowing
+var person2 = {
+    firstname: 'Kindle',
+    lastname: 'Shu'
+};
+// person2 actually borrows person1!
+console.log(person.getFullName.apply(person2));
+
+// Function Currying
+
+// function borrowing
+var person2 = {
+    firstname: 'Jane',
+    lastname: 'Doe'
+}
+
+console.log(person.getFullName.apply(person2));
+
+// function currying
+// Creating a copy of a function with preset params
+function multiply(a, b) {
+    return a*b;
+}
+
+var multipleByTwo = multiply.bind(this, 2);
+console.log(multipleByTwo(4));
+
+var multipleByThree = multiply.bind(this, 3);
+console.log(multipleByThree(4));
