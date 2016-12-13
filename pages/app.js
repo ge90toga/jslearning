@@ -45,5 +45,11 @@ var arr5 = mapForEach(arr, checkPassLimitSimpler(2));
 console.log(arr5.valueOf());
 
 
+// underscore js, a functional programming library
+// underscore
+var arr6 = _.map([1,3,5], function(item) { return item * 3 });
+console.log(arr6.valueOf());
 
+var arr7 = _.filter([2,3,4,5,6,7], function(item) { return item % 2 === 0; });
+console.log(arr7.valueOf());
 
