@@ -1,59 +1,49 @@
-var person = {
-    firstname: 'Linus',
-    lastname: 'Quan',
-    getFullName: function(){
-        var fullname = this.firstname + ' '+ this.lastname;
-        return fullname;
+//Functional Programming
+function mapForEach(arr, fn) {
+    var newArr = [];
+    for (var i = 0; i < arr.length; ++i) {
+        newArr.push(fn(arr[i]));
     }
+
+    return newArr;
 }
 
-var logName = function (lang1,lang2) {
-    console.log('Name: '+ this.getFullName());
-}
+arr = [1, 2, 3];
 
-// logName() // produces error
+// get an array which times*2 of the current array
+arr2 = mapForEach(arr, function (number) {
+    return 2 * number;
+});
 
-var logPersonName = logName.bind(person); // bind the object to var's this property
-logPersonName(); // no error this time
+console.log(arr2.valueOf());
 
-var logNamebind = function (lang1,lang2) {
-    console.log('Name: '+ this.getFullName());
-}.bind(person);
+// we filter number with a rule
+arr3 = mapForEach(arr, function (number) {
+    return number > 2;
+});
 
-logNamebind();
+console.log(arr3.valueOf()); //[false, false, true]
 
-logName.call(person,'en','cn'); // pass the first param to replace 'this' in logName
-logName.apply(person,['en','cn']); // does the same, just use [] as the second parameter
-
-
-
-
-// Function Borrowing
-var person2 = {
-    firstname: 'Kindle',
-    lastname: 'Shu'
+var checkPassLimit = function (limiter, item) {
+    return item > limiter;
 };
-// person2 actually borrows person1!
-console.log(person.getFullName.apply(person2));
 
-// Function Currying
+// use bind to add a filter inside
+var arr4 = mapForEach(arr, checkPassLimit.bind(this, 1));
+console.log(arr4.valueOf());
 
-// function borrowing
-var person2 = {
-    firstname: 'Jane',
-    lastname: 'Doe'
-}
+var checkPassLimitSimpler = function (limiter) {
+    return function (limiter, item) {
+        // note this limiter is not passed from limiter outside! it is binded!!!
+        return item > limiter;
+    }.bind(this, limiter);
+};
 
-console.log(person.getFullName.apply(person2));
+console.log(arr);
 
-// function currying
-// Creating a copy of a function with preset params
-function multiply(a, b) {
-    return a*b;
-}
+var arr5 = mapForEach(arr, checkPassLimitSimpler(2));
+console.log(arr5.valueOf());
 
-var multipleByTwo = multiply.bind(this, 2);
-console.log(multipleByTwo(4));
 
-var multipleByThree = multiply.bind(this, 3);
-console.log(multipleByThree(4));
+
+
