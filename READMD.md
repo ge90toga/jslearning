@@ -1,16 +1,6 @@
-### Everything is object
-- In js everything has a proto property except for empty Object{}
-```javascript
-var a = {}; 
-var b = function () {};
-var c = [];
-
-// a.__proto__ is  Object{}
-// b.__proto__ is function(){} (primitive function)
-// b.__proto__ contains call(), apply(), bind()...
-// c.__proto__ is [] (primitive array) which contains splice, indexOf...
-
-// b.__proto__.__proto__ is Object{}
-// c.__proto__.proto__  Object{}
-// the end of prototype chain: Object{}
-```
+### Reflection and Extend
+- Reflection is the object can look at itself, listening 
+and changing its properties and functions.
+Other defination:
+Reflection is a language's ability to inspect and dynamically call 
+classes, methods, attributes, etc. at runtime.
