@@ -1,49 +1,40 @@
-var person = {
-    firstname: 'Default',
-    lastname: 'Default',
-    getFullName: function() {
-        return this.firstname + ' ' + this.lastname;
-    }
+function Person(firstname, lastname) {
+
+    console.log(this);
+    this.firstname = firstname;
+    this.lastname = lastname;
+    console.log('This function is invoked.');
+
 }
 
-var john = {
-    firstname: 'John',
-    lastname: 'Doe'
+Person.prototype.getFullName = function () {
+    return this.firstname + ' '+ this.lastname;
 }
 
-// don't do this EVER! for demo purposes only!!!
-john.__proto__ = person;
 
-// prints out every property(function) including its prototypes'
-for (var prop in john) {
-    console.log(prop + ': ' + john[prop]);
-}
-
-// prints out every property(function) including its prototypes'
-for (var prop in john) {
-    // Only print its own by calling hasOwnProperty(property)
-    if(john.hasOwnProperty(prop)){
-        console.log(prop + ': ' + john[prop]);
-    }
-}
-
-var jane = {
-    address: '111 Main St.',
-    getFormalFullName: function() {
-        return this.lastname + ', ' + this.firstname;
-    }
-}
-
-var jim = {
-    getFirstName: function() {
-        return firstname;
-    }
-}
-
-_.extend(john, jane, jim);
-
+// constructor
+var john = new Person('John', 'Doe');
 console.log(john);
 
 
+var jane = new Person('Jane', 'Doe');
+console.log(jane);
+// now john and jane's __proto__ has getFullName function property!!!
 
 
+// we can even add this on the fly:
+Person.prototype.getFormalFullName = function () {
+    return this.lastname + ','+ this.firstname;
+}
+
+// john.getFormalFullName() uses prototype chain to lookup
+
+console.log(john.getFormalFullName());
+console.log(jane.getFormalFullName());
+
+console.log(jane.__proto__);// an Object{} which contains getFullName, getFormalFullName
+// you can add functions in function Person(){...}
+// but it takes up more memory spaces
+// use .prototype is more space efficient
+
+//
