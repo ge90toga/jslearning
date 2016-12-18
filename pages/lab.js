@@ -1,3 +1,17 @@
+var friends = [ // some fake data
+    {name: 'Kyle', lastText: 'How are you?', face: '/img/kyle.png'},
+    {name: 'Stan', lastText: 'Thanks', face: '/img/stan.png'},
+    {name: 'Eric', lastText: 'Meet me after 5.', face: 'img/cartman.png'},
+    {name: 'Kenny', lastText: 'Meet me after 5.', face: 'img/kenny.png'}
+];
+
+friends = friends.filter(function( obj ) {
+    return obj.name !== 'Kyle';
+});
+
+//console.log(friends);
+
+
 // var re = /{(\w+)}\s(\*+)/;
 // var str = "sdsd";
 //
