@@ -1,38 +1,29 @@
-// var re = /{(\w+)}\s(\*+)/;
-// var str = "sdsd";
-//
-// if(str.match(re)){
-//     var arr = str.split(re);
-//     console.log('Send to:',arr[1]);
-//     console.log('Message: ',arr[2]);
-// }
-// // // function splitString(stringToSplit, separator) {
-// // //     var arrayOfStrings = stringToSplit.split(separator);
-// // //
-// // //     console.log('The original string is: "' + stringToSplit + '"');
-// // //     console.log('The separator is: "' + separator + '"');
-// // //     console.log('The array has ' + arrayOfStrings.length + ' elements: ' + arrayOfStrings.join(' / '));
-// // // }
-// // //
-// // // var tempestString = 'Oh brave new world that has such people in it.';
-// // // var monthString = 'Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
-// // //
-// // // var space = ' ';
-// // // var comma = ',';
-// // //
-// // // splitString(tempestString, space);
-// // // splitString(tempestString);
-// // // splitString(monthString, comma);
-//
-// // var message = {};
-// //
-// // function pushMessage(msg) {
-// //     if(!message.person){
-// //         message.person = [{sender:"Mike", text:msg}];
-// //     }else{
-// //         message.person.push({sender:"Mike", text:msg});
-// //     }
-// // }
-// //
-// // pushMessage('Hello');
-// // console.log(message);
+// Builtin constructor
+var a = new Number(3); // wrapper object
+// a is a object wraps the Number object inside
+console.log(a);
+var s = new String("Hello");
+console.log(s);
+// They can use methods in their primitive types because of the prototype chain
+console.log(s.indexOf('e'));
+// But they are not primitives
+console.log("Hello" == s);
+console.log("Hello" === s); // Type is not the same l:string r:object
+
+String.prototype.isLengthGreaterThan = function(limit) {
+    return this.length > limit;
+}
+
+// Primitive String is automatically converted to String object
+console.log("John".isLengthGreaterThan(3));
+
+Number.prototype.isPositive = function() {
+    return this > 0;
+}
+
+// But you cannot call 3.isPositive()
+// You can:
+var m = 3; // var Number(3);
+m.isPositive(); // This works
+// a is a wrapper object, m is number object but 3 just cannot call isPositive() although it is also a number
+
