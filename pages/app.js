@@ -1,32 +1,27 @@
-// polyfill
-if (!Object.create) { // For old browser that has no create function
-    Object.create = function (o) {
-        if (arguments.length > 1) {
-            throw new Error('Object.create implementation'
-                + ' only accepts the first parameter.');
-        }
-        function F() {} // create a function
-        F.prototype = o; // function's prototype points to the proto object o
-        return new F(); // new here construct a new object where its __proto__ points to o
-    };
+var a = 3;
+console.log(typeof a);
+
+var b = "Hello";
+console.log(typeof b);
+
+var c = {};
+console.log(typeof c);
+
+var d = [];
+console.log(typeof d); // weird!
+console.log(Object.prototype.toString.call(d));
+// better! invoke function but change "this" points to d
+
+function Person(name) {
+    this.name = name;
 }
 
+var e = new Person('Jane');
+console.log(typeof e);
+console.log(e instanceof Person);
 
-var person = {
-    firstname: 'Default',
-    lastname: 'Default',
-    greet: function() {
-        return 'Hi ' + this.firstname;
-    }
-};
+console.log(typeof undefined); // makes sense
+console.log(typeof null); // a bug since, like, forever...
 
-var john = Object.create(person); // john's __proto__ points person
-john.firstname = 'John';
-john.lastname = 'Doe'; // we can override properties
-console.log(john.greet()); // Hi John
-
-/**
- * We used person to construct an new object which points its __proto__ to person
- * w
- */
-
+var z = function() { };
+console.log(typeof z);
