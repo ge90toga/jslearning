@@ -1,29 +1,32 @@
-// Builtin constructor
-var a = new Number(3); // wrapper object
-// a is a object wraps the Number object inside
-console.log(a);
-var s = new String("Hello");
-console.log(s);
-// They can use methods in their primitive types because of the prototype chain
-console.log(s.indexOf('e'));
-// But they are not primitives
-console.log("Hello" == s);
-console.log("Hello" === s); // Type is not the same l:string r:object
-
-String.prototype.isLengthGreaterThan = function(limit) {
-    return this.length > limit;
+// polyfill
+if (!Object.create) { // For old browser that has no create function
+    Object.create = function (o) {
+        if (arguments.length > 1) {
+            throw new Error('Object.create implementation'
+                + ' only accepts the first parameter.');
+        }
+        function F() {} // create a function
+        F.prototype = o; // function's prototype points to the proto object o
+        return new F(); // new here construct a new object where its __proto__ points to o
+    };
 }
 
-// Primitive String is automatically converted to String object
-console.log("John".isLengthGreaterThan(3));
 
-Number.prototype.isPositive = function() {
-    return this > 0;
-}
+var person = {
+    firstname: 'Default',
+    lastname: 'Default',
+    greet: function() {
+        return 'Hi ' + this.firstname;
+    }
+};
 
-// But you cannot call 3.isPositive()
-// You can:
-var m = 3; // var Number(3);
-m.isPositive(); // This works
-// a is a wrapper object, m is number object but 3 just cannot call isPositive() although it is also a number
+var john = Object.create(person); // john's __proto__ points person
+john.firstname = 'John';
+john.lastname = 'Doe'; // we can override properties
+console.log(john.greet()); // Hi John
+
+/**
+ * We used person to construct an new object which points its __proto__ to person
+ * w
+ */
 

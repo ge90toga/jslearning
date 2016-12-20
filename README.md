@@ -1,2 +1,2 @@
-Basically "new" gives more functionality as it creates wrapper object around primitives, but try
-not use them often as it produces unexpected errors.
+// Object create
+a prototypical inheritance is to point object's __proto__ to its prototype.
